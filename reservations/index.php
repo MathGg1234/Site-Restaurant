@@ -26,4 +26,7 @@
             <button type="submit">Réserver</button>
         </form>
     </main>
+
+<br>
+<br>
 <?php include '../includes/footer.php'; ?>

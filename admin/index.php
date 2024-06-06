@@ -45,15 +45,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Réservations</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/Site-Restaurant/assets/css/Astyles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>Réservations</h2>
         <div class="date-selector">
-            <label for="reservation-date">Voir les réservations pour le :</label>
-            <input type="date" id="reservation-date" name="reservation-date" value="<?php echo date('Y-m-d'); ?>">
+            <form id="date-form" method="get" action="">
+                <label for="reservation-date">Voir les réservations pour le :</label>
+                <input type="date" id="reservation-date" name="date" value="<?php echo date('Y-m-d'); ?>">
+                <button type="submit">Afficher</button>
+            </form>
         </div>
         <?php
         include '../includes/db.php';
@@ -140,8 +143,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <script>
         $(document).ready(function() {
             $('#reservation-date').change(function() {
-                var selectedDate = $(this).val();
-                window.location.href = 'index.php?date=' + selectedDate;
+                $('#date-form').submit();
             });
 
             var modal = $('#reservation-modal');
