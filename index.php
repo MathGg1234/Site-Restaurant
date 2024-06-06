@@ -89,6 +89,16 @@ window.addEventListener("scroll", function() {
         footer.style.display = "none"; // Cacher le footer sinon
     }
 });
+
+
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    // Afficher une fenêtre pop-up pour confirmer que la réservation a été prise en compte
+    alert('Votre réservation a été prise en compte avec succès !');
+});
+
+
+
 </script>
 
 <?php include 'includes/footer.php'; ?>

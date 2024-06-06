@@ -14,7 +14,8 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssis", $name, $email, $phone, $date, $time, $guests, $message);
 
 if ($stmt->execute()) {
-    echo "Réservation réussie !";
+    	header("Location: ../index.php");
+	exit;
 } else {
     echo "Erreur : " . $sql . "<br>" . $conn->error;
 }

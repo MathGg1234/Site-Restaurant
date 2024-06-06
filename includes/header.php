@@ -14,7 +14,6 @@
                 <li><a href="../index.php">Accueil</a></li>
                 <li><a href="/menu.php">Carte</a></li>
                 <li><a href="/gallery.php">Galerie</a></li>
-                <li><a href="/contact.php">Contact</a></li>
                 <li><a href="reservations/index.php">Réservation</a></li>
             </ul>
         </nav>
