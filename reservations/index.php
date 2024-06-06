@@ -26,7 +26,22 @@
             <button type="submit">Réserver</button>
         </form>
     </main>
+<br>
+<br>
+<br>
+<br>
+<script>
 
-<br>
-<br>
+window.addEventListener("scroll", function() {
+    var footer = document.querySelector("footer");
+    var scrollTop = window.scrollY;
+    var windowHeight = window.innerHeight;
+    var documentHeight = document.body.clientHeight;
+    if (scrollTop + windowHeight >= documentHeight) {
+        footer.style.display = "block"; // Afficher le footer lorsque l'utilisateur a défilé jusqu'en bas
+    } else {
+        footer.style.display = "none"; // Cacher le footer sinon
+    }
+});
+</script>
 <?php include '../includes/footer.php'; ?>

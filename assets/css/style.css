@@ -1,17 +1,20 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
     color: #333;
+    min-height: 100vh; /* Hauteur minimale de la vue à 100% */
+    position: relative; /* Position relative pour que le footer s'affiche correctement */
 }
 
 header {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 header h1 {
@@ -22,11 +25,12 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 nav ul li a {
@@ -40,22 +44,32 @@ nav ul li a:hover {
 }
 
 main {
+    padding: 40px 20px;
+}
+
+.section {
+    margin-bottom: 40px;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-main section {
-    margin-bottom: 20px;
-}
-
-main h2 {
-    border-bottom: 2px solid #333;
+h2 {
+    border-bottom: 2px solid #343a40;
     padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+p {
+    line-height: 1.6;
 }
 
 form {
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
@@ -75,7 +89,7 @@ form input, form textarea {
 
 form button {
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -84,18 +98,28 @@ form button {
 }
 
 form button:hover {
-    background-color: #555;
+    background-color: #495057;
 }
 
 footer {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    display: none; /* Par défaut, le footer est caché */
+    transition: display 0.3s ease; /* Ajout d'une transition pour une apparence fluide */
 }
+
+
+
+.wrapper {
+    margin-bottom: 80px; /* Hauteur du footer */
+}
+
+
 
 table {
     width: 100%;
@@ -113,26 +137,18 @@ th, td {
 }
 
 th {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* Carousel */
-#carousel {
-    width: 100%;
+.carousel-container {
+    width: 75%;
+    margin: 0 auto; /* Centre le carousel horizontalement */
     overflow: hidden;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .carousel {
@@ -143,6 +159,7 @@ th {
 .carousel img {
     width: 100%;
     flex-shrink: 0;
+    border-radius: 8px;
 }
 
 /* Keyframes for carousel animation */
@@ -153,21 +170,23 @@ th {
     100% { transform: translateX(0%); }
 }
 
-
-
-
 /* Testimonials */
-#testimonials {
-    background: #f4f4f4;
+.testimonials-section {
+    background: #f8f9fa;
     padding: 20px;
-    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-#testimonials h2 {
-    margin-top: 0;
+.testimonial {
+    background: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
 }
 
-#testimonials p {
+.testimonial p {
     font-style: italic;
 }
 
@@ -180,7 +199,8 @@ th {
 #daily-menu {
     background: #fff8dc;
     padding: 20px;
-    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 #daily-menu h2 {
@@ -188,16 +208,12 @@ th {
 }
 
 /* Social Media */
-#social-media {
+.social-media {
     margin-top: 10px;
 }
 
-#social-media a {
+.social-media a {
     margin-right: 10px;
     text-decoration: none;
-    color: #555;
-}
+    color: #495057;
 
-#social-media a:hover {
-    color: #000;
-}

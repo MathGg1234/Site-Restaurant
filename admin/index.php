@@ -14,7 +14,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,22 +40,24 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Réservations</title>
+    <title>Admin - Panel</title>
     <link rel="stylesheet" href="/Site-Restaurant/assets/css/Astyles.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h2>Réservations</h2>
+        <h2>Panel Admin</h2>
         <div class="date-selector">
             <form id="date-form" method="get" action="">
+            
+            <h2>Réservation</h2>
+            
                 <label for="reservation-date">Voir les réservations pour le :</label>
-                <input type="date" id="reservation-date" name="date" value="<?php echo date('Y-m-d'); ?>">
-                <button type="submit">Afficher</button>
+                <input type="date" id="reservation-date" name="date" value="<?php echo isset($_GET['date']) ? $_GET['date'] : date('Y-m-d'); ?>">
             </form>
         </div>
         <?php
@@ -68,6 +70,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
+        
             echo "<table>
                     <tr>
                         <th>Nom</th>
@@ -92,6 +95,38 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             echo "</table>";
         } else {
             echo "Aucune réservation trouvée";
+        }
+
+        $stmt->close();
+
+        // Fetch daily menus
+        $stmt = $conn->prepare("SELECT * FROM daily_menu ORDER BY date");
+        $stmt->execute();
+        $menus = $stmt->get_result();
+
+        if ($menus->num_rows > 0) {
+            echo "<h2>Menus du Jour</h2>";
+            echo "<form id='select-menu-form' method='post' action='select_menu.php'>";
+            echo "<table>
+                    <tr>
+                        <th>Nom du Plat</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Sélectionner</th>
+                    </tr>";
+            while($menu = $menus->fetch_assoc()) {
+                echo "<tr>
+                        <td>{$menu['dish_name']}</td>
+                        <td>{$menu['description']}</td>
+                        <td>{$menu['date']}</td>
+                        <td><input type='radio' name='selected_menu' value='{$menu['id_menu']}'></td>
+                      </tr>";
+            }
+            echo "</table>";
+            echo "<button type='submit'>Sélectionner le Menu</button>";
+            echo "</form>";
+        } else {
+            echo "Aucun menu du jour trouvé";
         }
 
         $stmt->close();
@@ -194,11 +229,27 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     url: 'add_daily_menu.php',
                     data: $(this).serialize(),
                     success: function(response) {
-                        alert('Plat du jour ajouté avec succès');
+                        alert(response);
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Erreur lors de l\'ajout du plat du jour : ' + xhr.responseText);
+                    }
+                });
+            });
+
+            $('#select-menu-form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'select_menu.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        alert('Menu du jour sélectionné avec succès');
                         location.reload();
                     },
                     error: function() {
-                        alert('Erreur lors de l\'ajout du plat du jour');
+                        alert('Erreur lors de la sélection du menu du jour');
                     }
                 });
             });
