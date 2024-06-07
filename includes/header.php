@@ -11,8 +11,8 @@
         <h1>Bienvenue à Notre Restaurant</h1>
         <nav>
             <ul>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="/menu.php">Carte</a></li>
+                <li><a href="/Site-Restaurant/index.php">Accueil</a></li>
+                <li><a href="/Site-Restaurant/menu.php">Carte</a></li>
                 <li><a href="/gallery.php">Galerie</a></li>
                 <li><a href="reservations/index.php">Réservation</a></li>
             </ul>
